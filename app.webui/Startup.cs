@@ -16,6 +16,8 @@ namespace app.webui
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //mvc
+            services.AddControllersWithViews(); // controller kullanacağımızı belirttik.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,12 +30,17 @@ namespace app.webui
 
             app.UseRouting();
 
+            // localhost:5000
+            // localhost:5000/home
+            // localhost:5000/home/index
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}"         // id olmayabilir ?
+                    
+                );
             });
         }
     }
