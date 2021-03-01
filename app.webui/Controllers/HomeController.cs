@@ -6,14 +6,18 @@ namespace app.webui.Controllers
     public class HomeController : Controller
     {
         // localhost:5000/home/index
-        public string Index() // action
+        public IActionResult Index() // action
         {
-            return "home/index";
+            return View();
         }
         // localhost:5000/home/about
-        public string About() // action
+        public IActionResult About() // action
         {
-            return "home/about";
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View("MyView");
         }
     }
 }

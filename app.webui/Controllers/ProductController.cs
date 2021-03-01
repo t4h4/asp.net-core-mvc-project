@@ -4,14 +4,14 @@ namespace app.webui.Controllers
 {
     public class ProductController : Controller
     {
-        public string Index() // action
+        public IActionResult Index() // action
         {
-            return "product/index";
+            return View();
         }
         // localhost:5000/product/list
-        public string list() // action   
+        public IActionResult list() // action   
         {
-            return "product/list";
+            return View();
         }
         // localhost:5000/product/details/2
         public string Details(int id) // action
