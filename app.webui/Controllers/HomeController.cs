@@ -6,12 +6,12 @@ namespace app.webui.Controllers
     public class HomeController : Controller
     {
         // localhost:5000/home/index
-        public string Index()
+        public string Index() // action
         {
             return "home/index";
         }
         // localhost:5000/home/about
-        public string About()
+        public string About() // action
         {
             return "home/about";
         }

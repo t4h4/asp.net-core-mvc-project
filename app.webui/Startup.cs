@@ -38,8 +38,8 @@ namespace app.webui
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action}/{id?}"         // id olmayabilir ?
-                    
+                    pattern: "{controller=Home}/{action=Index}/{id?}"  // id olmayabilir ? // varsayılan olarak Home/Index'e gidiyor.
+
                 );
             });
         }
