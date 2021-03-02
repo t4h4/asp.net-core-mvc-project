@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.webui.Controllers
@@ -8,6 +9,9 @@ namespace app.webui.Controllers
         // localhost:5000/home/index
         public IActionResult Index() // action
         {
+            int saat = DateTime.Now.Hour;
+            ViewBag.Greeting = saat>12?"Have a good day":"Good morning,";
+            ViewBag.Username = "Taha";
             return View();
         }
         // localhost:5000/home/about
