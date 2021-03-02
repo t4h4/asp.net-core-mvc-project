@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using app.webui.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace app.webui.Controllers
             // ViewData["Product"] = product;
             // ViewData["Category"] = "Telefon";
 
-             ViewBag.Category = "Telefon";
+            ViewBag.Category = "Telefon";
             // ViewBag.Product = product;
 
             return View(product);
@@ -24,7 +25,21 @@ namespace app.webui.Controllers
         // localhost:5000/product/list
         public IActionResult list() // action   
         {
-            return View();
+            var products = new List<Product>()
+            {
+                new Product {Name="nokia n8", Price=3000, Description="nokia n8 telefon"},
+                new Product {Name="nokia n95", Price=2000, Description="nokia n95 telefon"}
+
+            };
+
+            var category = new Category { Name = "Telefonlar", Description = "Telefon kategorisi" };
+
+            var productViewModel = new ProductViewModel()
+            {
+                Category = category,
+                Products = products
+            };
+            return View(productViewModel);
         }
         // localhost:5000/product/details/2
         public IActionResult Details(int id) // action
