@@ -7,6 +7,15 @@ namespace app.webui.Controllers
     {
         public IActionResult Index() // action
         {
+            // ViewBag
+            // Model
+            // ViewData
+
+            var product = new Product { Name = "xiaomi mi", Price = 3000, Description = "f/p telefon" };
+
+            ViewData["Product"] = product;
+            ViewData["Category"] = "Telefon";
+
             return View();
         }
         // localhost:5000/product/list

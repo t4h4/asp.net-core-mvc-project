@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
 </head>
+
 <body>
-    product/index
+    @* string bilgi varsa cast işlemine gerek yok. direk algılıyor. *@
+    <h1>@ViewData["Category"]</h1>
+    @* nesne varsa cast işlemine gerek var. tür dönüşümü yapmamız gerekiyor. *@
+    <h4>@(((Product)ViewData["Product"]).Name)</h4>
+    <h4>@(((Product)ViewData["Product"]).Price)</h4>
+    <h4>@(((Product)ViewData["Product"]).Description)</h4>
 </body>
+
 </html>
