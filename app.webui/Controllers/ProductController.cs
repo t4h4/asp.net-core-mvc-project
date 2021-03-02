@@ -16,10 +16,10 @@ namespace app.webui.Controllers
             // ViewData["Product"] = product;
             // ViewData["Category"] = "Telefon";
 
-            ViewBag.Category = "Telefon";
-            ViewBag.Product = product;
+             ViewBag.Category = "Telefon";
+            // ViewBag.Product = product;
 
-            return View();
+            return View(product);
         }
         // localhost:5000/product/list
         public IActionResult list() // action   
