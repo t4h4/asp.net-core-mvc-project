@@ -1,3 +1,4 @@
+using app.webui.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.webui.Controllers
@@ -14,9 +15,18 @@ namespace app.webui.Controllers
             return View();
         }
         // localhost:5000/product/details/2
-        public string Details(int id) // action
+        public IActionResult Details(int id) // action
         {
-            return "product/details/" + id;
+            // ViewBag.Name = "iphone 12";
+            // ViewBag.Price = 12000;
+            // ViewBag.Description = "telefon";
+
+            var p = new Product(); // product modeli eklendi.
+            p.Name = "iphone 12";
+            p.Price = 13000;
+            p.Description = "telefon";
+
+            return View(p);
         }
     }
 }
