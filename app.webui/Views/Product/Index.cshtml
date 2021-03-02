@@ -10,11 +10,18 @@
 
 <body>
     @* string bilgi varsa cast işlemine gerek yok. direk algılıyor. *@
-    <h1>@ViewData["Category"]</h1>
+    @* <h1>@ViewData["Category"]</h1> *@
     @* nesne varsa cast işlemine gerek var. tür dönüşümü yapmamız gerekiyor. *@
-    <h4>@(((Product)ViewData["Product"]).Name)</h4>
+    @* <h4>@(((Product)ViewData["Product"]).Name)</h4>
     <h4>@(((Product)ViewData["Product"]).Price)</h4>
-    <h4>@(((Product)ViewData["Product"]).Description)</h4>
+    <h4>@(((Product)ViewData["Product"]).Description)</h4> *@
+
+    <h1>@ViewBag.Category</h1>
+    <h4>@ViewBag.Product.Name</h4>
+    <h4>@ViewBag.Product.Price</h4>
+    <h4>@ViewBag.Product.Description</h4>
+
+
 </body>
 
 </html>

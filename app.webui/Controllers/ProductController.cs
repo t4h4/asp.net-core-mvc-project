@@ -13,8 +13,11 @@ namespace app.webui.Controllers
 
             var product = new Product { Name = "xiaomi mi", Price = 3000, Description = "f/p telefon" };
 
-            ViewData["Product"] = product;
-            ViewData["Category"] = "Telefon";
+            // ViewData["Product"] = product;
+            // ViewData["Category"] = "Telefon";
+
+            ViewBag.Category = "Telefon";
+            ViewBag.Product = product;
 
             return View();
         }
