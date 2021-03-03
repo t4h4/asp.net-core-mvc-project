@@ -32,11 +32,18 @@ namespace app.webui.Controllers
 
             };
 
-            var category = new Category { Name = "Telefonlar", Description = "Telefon kategorisi" };
+            var categories = new List<Category>()
+            {
+                new Category {Name="Telefon",Description="Telefon Kategorisi"},
+                new Category {Name="Bilgisayar",Description="Bilgisayar Kategorisi"},
+                new Category {Name="Elektronik",Description="Elektronik Kategorisi"}
+            };
+
+            
 
             var productViewModel = new ProductViewModel()
             {
-                Category = category,
+                Categories = categories,
                 Products = products
             };
             return View(productViewModel);
