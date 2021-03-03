@@ -30,20 +30,10 @@ namespace app.webui.Controllers
                 new Product {Name="nokia n8", Price=3000, Description="nokia n8 telefon"},
                 new Product {Name="nokia n95", Price=2000, Description="nokia n95 telefon"}
 
-            };
-
-            var categories = new List<Category>()
-            {
-                new Category {Name="Telefon",Description="Telefon Kategorisi"},
-                new Category {Name="Bilgisayar",Description="Bilgisayar Kategorisi"},
-                new Category {Name="Elektronik",Description="Elektronik Kategorisi"}
-            };
-
-            
+            };            
 
             var productViewModel = new ProductViewModel()
             {
-                Categories = categories,
                 Products = products
             };
             return View(productViewModel);

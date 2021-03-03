@@ -3,7 +3,6 @@
 @{
     var popularClass = Model.Products.Count > 2 ? "popular" : "";
     var products = Model.Products;
-    var categories = Model.Categories;
 }
 
 
@@ -34,7 +33,7 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        @await Html.PartialAsync("_categories", categories)
+                        @await Component.InvokeAsync("Categories")
                     </div>
                     <div class="col-md-9">
                         @if (products.Count == 0)
