@@ -1,38 +1,10 @@
-@model Product //direk product deyince geliyor. çünkü _ViewImports'a ekledik modeli.
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Product</title>
-</head>
-
-<body>
-    @await Html.PartialAsync("_navbar")
-    @* string bilgi varsa cast işlemine gerek yok. direk algılıyor. *@
-    @* <h1>@ViewData["Category"]</h1> *@
-    @* nesne varsa cast işlemine gerek var. tür dönüşümü yapmamız gerekiyor. *@
-    @* <h4>@(((Product)ViewData["Product"]).Name)</h4>
-        <h4>@(((Product)ViewData["Product"]).Price)</h4>
-        <h4>@(((Product)ViewData["Product"]).Description)</h4> *@
-
-    @* <h1>@ViewBag.Category</h1>
-        <h4>@ViewBag.Product.Name</h4>
-        <h4>@ViewBag.Product.Price</h4>
-        <h4>@ViewBag.Product.Description</h4> *@
-
-    <h1>@ViewBag.Category</h1>
-
-    <h4>@Model.Name</h4>
-    <h4>@Model.Price</h4>
-    <h4>@Model.Description</h4>
 
 
-</body>
-
-</html>
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("Categories")
+    </div>
+    <div class="col-md-9">
+        product index
+    </div>
+</div>
