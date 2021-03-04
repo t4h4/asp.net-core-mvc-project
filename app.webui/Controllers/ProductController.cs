@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using app.webui.Data;
 using app.webui.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,17 +26,9 @@ namespace app.webui.Controllers
         // localhost:5000/product/list
         public IActionResult list() // action   
         {
-            var products = new List<Product>()
-            {
-                new Product {Name="Iphone 7",Price=3000,Description="iyi telefon",IsApproved=false},
-                new Product {Name="Iphone 8",Price=4000,Description="çok iyi telefon",IsApproved=true},
-                new Product {Name="Iphone X",Price=5000,Description="çok iyi telefon",IsApproved=true},
-                new Product {Name="Iphone 11",Price=7000,Description="çok iyi telefon"},
-            };
-
             var productViewModel = new ProductViewModel()
             {
-                Products = products
+                Products = ProductRepository.Products
             };
             return View(productViewModel);
         }
