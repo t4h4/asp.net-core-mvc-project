@@ -33,18 +33,9 @@ namespace app.webui.Controllers
             return View(productViewModel);
         }
         // localhost:5000/product/details/2
-        public IActionResult Details(int id) // action
+        public IActionResult Details(int id) 
         {
-            // ViewBag.Name = "iphone 12";
-            // ViewBag.Price = 12000;
-            // ViewBag.Description = "telefon";
-
-            var p = new Product(); // product modeli eklendi.
-            p.Name = "iphone 12";
-            p.Price = 13000;
-            p.Description = "telefon";
-
-            return View(p);
+           return View(ProductRepository.GetProductById(id));
         }
     }
 }
