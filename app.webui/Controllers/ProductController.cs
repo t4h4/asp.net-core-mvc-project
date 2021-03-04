@@ -27,10 +27,11 @@ namespace app.webui.Controllers
         {
             var products = new List<Product>()
             {
-                new Product {Name="nokia n8", Price=3000, Description="nokia n8 telefon"},
-                new Product {Name="nokia n95", Price=2000, Description="nokia n95 telefon"}
-
-            };            
+                new Product {Name="Iphone 7",Price=3000,Description="iyi telefon",IsApproved=false},
+                new Product {Name="Iphone 8",Price=4000,Description="çok iyi telefon",IsApproved=true},
+                new Product {Name="Iphone X",Price=5000,Description="çok iyi telefon",IsApproved=true},
+                new Product {Name="Iphone 11",Price=7000,Description="çok iyi telefon"},
+            };
 
             var productViewModel = new ProductViewModel()
             {
