@@ -30,6 +30,16 @@ namespace app.webui.Controllers
         // product/list/2 => 2 numaralı kategoriye ait ürünler
         public IActionResult list(int? id) 
         {
+            // {controller}/{action}/{id?}
+            // product/list/3
+            // RouteData.Values["controller"] => product
+            // RouteData.Values["action"] => list
+            // RouteData.Values["id"] => 3
+
+            // Console.WriteLine(RouteData.Values["controller"]);
+            // Console.WriteLine(RouteData.Values["action"]);
+            // Console.WriteLine(RouteData.Values["id"]);
+
             var products = ProductRepository.Products;
 
             if (id != null)
