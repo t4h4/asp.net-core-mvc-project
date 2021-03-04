@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using app.webui.Data;
 using app.webui.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,18 +25,29 @@ namespace app.webui.Controllers
             return View(product);
         }
         // localhost:5000/product/list
-        public IActionResult list() // action   
+
+        // product/list => tüm ürünleri (sayfalama)
+        // product/list/2 => 2 numaralı kategoriye ait ürünler
+        public IActionResult list(int? id) 
         {
+            var products = ProductRepository.Products;
+
+            if (id != null)
+            {
+                products = products.Where(p => p.CategoryId == id).ToList();
+            }
+
             var productViewModel = new ProductViewModel()
             {
-                Products = ProductRepository.Products
+                Products = products
             };
+
             return View(productViewModel);
         }
         // localhost:5000/product/details/2
-        public IActionResult Details(int id) 
+        public IActionResult Details(int id)
         {
-           return View(ProductRepository.GetProductById(id));
+            return View(ProductRepository.GetProductById(id));
         }
     }
 }
