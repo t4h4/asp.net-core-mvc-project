@@ -1,34 +1,30 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using app.webui.Data;
 using app.webui.Models;
-using Microsoft.AspNetCore.Mvc;
 
-namespace app.webui.Controllers
+namespace shopapp.webui.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index() // action
+        public IActionResult Index()
         {
-            // ViewBag
-            // Model
-            // ViewData
+            var product = new Product { Name = "Iphone X", Price = 6000, Description = "güzel telefon" };
 
-            var product = new Product { Name = "xiaomi mi", Price = 3000, Description = "f/p telefon" };
-
+            // ViewData["Category"] = "Telefonlar";
             // ViewData["Product"] = product;
-            // ViewData["Category"] = "Telefon";
 
-            ViewBag.Category = "Telefon";
+            ViewBag.Category = "Telefonlar";
             // ViewBag.Product = product;
 
+            // ViewBag.Product
             return View(product);
         }
-        // localhost:5000/product/list
-
         // product/list => tüm ürünleri (sayfalama)
         // product/list/2 => 2 numaralı kategoriye ait ürünler
-        public IActionResult list(int? id) 
+        public IActionResult list(int? id, string q, double? min_price, double? max_price) //string varsayılan olarak nulluble oldugu için soru işareti eklemiyoruz.
         {
             // {controller}/{action}/{id?}
             // product/list/3
@@ -40,11 +36,21 @@ namespace app.webui.Controllers
             // Console.WriteLine(RouteData.Values["action"]);
             // Console.WriteLine(RouteData.Values["id"]);
 
+            // QueryString
+            // Console.WriteLine(q);
+            // Console.WriteLine(HttpContext.Request.Query["q"].ToString());
+            // Console.WriteLine(HttpContext.Request.Query["min_price"].ToString());
+
             var products = ProductRepository.Products;
 
             if (id != null)
             {
                 products = products.Where(p => p.CategoryId == id).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(q))
+            {
+                products = products.Where(i => i.Name.Contains(q) || i.Description.Contains(q)).ToList();
             }
 
             var productViewModel = new ProductViewModel()
@@ -54,7 +60,7 @@ namespace app.webui.Controllers
 
             return View(productViewModel);
         }
-        // localhost:5000/product/details/2
+
         public IActionResult Details(int id)
         {
             return View(ProductRepository.GetProductById(id));
