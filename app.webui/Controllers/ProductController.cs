@@ -38,17 +38,27 @@ namespace shopapp.webui.Controllers
             return View(productViewModel);
         }
 
+        //eklemesek bile bu metodlarrın varsayılanları hep http get
+        [HttpGet] 
         public IActionResult Details(int id)
         {
             return View(ProductRepository.GetProductById(id));
         }
 
-        public IActionResult Create(string name,double price)
-        {
-            Console.WriteLine(name);
-            Console.WriteLine(price);
+        [HttpGet]
+        public IActionResult Create()
+        {           
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(Product p)
+        {           
+            ProductRepository.AddProduct(p);
+            return RedirectToAction("list"); // kayıt yapıldıktan sonra ürün listelemesine git.
+        }
+
+
         
     }
 }
