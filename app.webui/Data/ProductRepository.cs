@@ -4,7 +4,7 @@ using app.webui.Models;
 
 namespace app.webui.Data
 {
-    public static class ProductRepository // class'ın örnek oluşturmasına gerek yok bu yüzden tek bir tane olacak. static.
+    public static class ProductRepository
     {
         private static List<Product> _products = null;
 
@@ -17,17 +17,16 @@ namespace app.webui.Data
                 new Product {ProductId=3,Name="Iphone X",Price=5000,Description="çok iyi telefon",IsApproved=true, ImageUrl="3.jpg",CategoryId=1},
                 new Product {ProductId=4,Name="Iphone 11",Price=7000,Description="çok iyi telefon", ImageUrl="4.jpg",CategoryId=1},
                 new Product {ProductId=5,Name="Iphone 12",Price=7000,Description="çok iyi telefon", ImageUrl="4.jpg",CategoryId=1},
-                new Product {ProductId=6,Name="Lenovo 7",Price=3000,Description="iyi bilgisayar",IsApproved=false, ImageUrl="1.jpg",CategoryId=2},
-                new Product {ProductId=7,Name="Lenovo 8",Price=4000,Description="çok iyi bilgisayar",IsApproved=true, ImageUrl="2.jpg",CategoryId=2},
-                new Product {ProductId=8,Name="Lenovo X",Price=5000,Description="çok iyi bilgisayar",IsApproved=true, ImageUrl="3.jpg",CategoryId=2},
-                new Product {ProductId=9,Name="Lenovo 11",Price=7000,Description="çok iyi bilgisayar", ImageUrl="4.jpg",CategoryId=2}
+                new Product {ProductId=6,Name="Lenova 7",Price=3000,Description="iyi bilgisayar",IsApproved=false, ImageUrl="1.jpg",CategoryId=2},
+                new Product {ProductId=7,Name="Lenova 8",Price=4000,Description="çok iyi bilgisayar",IsApproved=true, ImageUrl="2.jpg",CategoryId=2},
+                new Product {ProductId=8,Name="Lenova X",Price=5000,Description="çok iyi bilgisayar",IsApproved=true, ImageUrl="3.jpg",CategoryId=2},
+                new Product {ProductId=9,Name="Lenova 11",Price=7000,Description="çok iyi bilgisayar", ImageUrl="4.jpg",CategoryId=2}
             };
         }
 
         public static List<Product> Products
         {
-            get
-            {
+            get {
                 return _products;
             }
         }
@@ -39,7 +38,23 @@ namespace app.webui.Data
 
         public static Product GetProductById(int id)
         {
-            return _products.FirstOrDefault(p => p.ProductId == id);
+            return _products.FirstOrDefault(p=>p.ProductId==id);
+        }
+
+        public static void EditProduct(Product product)
+        {
+            foreach (var p in _products)
+            {
+                if(p.ProductId == product.ProductId)
+                {
+                    p.Name = product.Name;
+                    p.Price = product.Price;
+                    p.ImageUrl = product.ImageUrl;
+                    p.Description = product.Description;
+                    p.IsApproved = product.IsApproved;
+                    p.CategoryId = product.CategoryId;
+                }
+            }
         }
     }
 }
