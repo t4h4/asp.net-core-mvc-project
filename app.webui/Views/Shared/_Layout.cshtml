@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="~/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
 
-    @if(IsSectionDefined("MessageBox"))
+    @if (IsSectionDefined("MessageBox"))
     {
-         @RenderSection("MessageBox")
+        @RenderSection("MessageBox")
     }
     else
     {
@@ -21,12 +23,13 @@
     }
 
     @await Html.PartialAsync("_navbar")
-    <partial name="_header">
 
-    <main>
-        <div class="container"> 
+    @RenderSection("Header",false)
 
-            @if(IsSectionDefined("Categories"))
+    <main class="my-3">
+        <div class="container">
+
+            @if (IsSectionDefined("Categories"))
             {
                 <div class="row">
                     <div class="col-md-3">
@@ -36,21 +39,28 @@
                         @RenderBody()
                     </div>
                 </div>
-            }   
+            }
             else
             {
-                 <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         @RenderBody()
                     </div>
-                 </div>   
+                </div>
             }
-            
+
         </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <footer class="py-5 bg-dark text-white text-center">
+        Shop App | 2020
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
 
     @RenderSection("Scripts",false)
 </body>
+
 </html>
