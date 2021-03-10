@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using app.webui.Data;
 using app.webui.Models;
 
@@ -38,8 +39,7 @@ namespace shopapp.webui.Controllers
             return View(productViewModel);
         }
 
-        //eklemesek bile bu metodlarrın varsayılanları hep http get
-        [HttpGet] 
+        [HttpGet]
         public IActionResult Details(int id)
         {
             return View(ProductRepository.GetProductById(id));
@@ -48,6 +48,7 @@ namespace shopapp.webui.Controllers
         [HttpGet]
         public IActionResult Create()
         {           
+            ViewBag.Categories = new SelectList(CategoryRepository.Categories,"CategoryId","Name");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace shopapp.webui.Controllers
         public IActionResult Create(Product p)
         {           
             ProductRepository.AddProduct(p);
-            return RedirectToAction("list"); // kayıt yapıldıktan sonra ürün listelemesine git.
+            return RedirectToAction("list"); 
         }
 
 
