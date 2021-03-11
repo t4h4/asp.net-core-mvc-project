@@ -55,7 +55,7 @@ namespace app.webui.Controllers
         [HttpPost]
         public IActionResult Create(Product p)
         {
-            if (ModelState.IsValid) //validasyon tamam ise,
+            if (ModelState.IsValid)
             {
                 ProductRepository.AddProduct(p);
                 return RedirectToAction("list");
@@ -79,6 +79,12 @@ namespace app.webui.Controllers
             return RedirectToAction("list");
         }
 
+        [HttpPost]
+        public IActionResult Delete(int ProductId)
+        {
+            ProductRepository.DeleteProduct(ProductId);
+            return RedirectToAction("list");
+        }
 
     }
 }
