@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using app.webui.Data;
-using app.webui.Models;
+using app.entity;
 
 namespace app.webui.Controllers
 {
@@ -19,70 +18,71 @@ namespace app.webui.Controllers
         }
         public IActionResult list(int? id, string q, double? min_price, double? max_price)
         {
-            var products = ProductRepository.Products;
+            // var products = ProductRepository.Products;
 
-            if (id != null)
-            {
-                products = products.Where(p => p.CategoryId == id).ToList();
-            }
+            // if (id != null)
+            // {
+            //     products = products.Where(p => p.CategoryId == id).ToList();
+            // }
 
-            if (!string.IsNullOrEmpty(q))
-            {
-                products = products.Where(i => i.Name.Contains(q) || i.Description.Contains(q)).ToList();
-            }
+            // if (!string.IsNullOrEmpty(q))
+            // {
+            //     products = products.Where(i => i.Name.Contains(q) || i.Description.Contains(q)).ToList();
+            // }
 
-            var productViewModel = new ProductViewModel()
-            {
-                Products = products
-            };
+            // var productViewModel = new ProductViewModel()
+            // {
+            //     Products = products
+            // };
 
-            return View(productViewModel);
+            // return View(productViewModel);
+            return View();
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
-            return View(ProductRepository.GetProductById(id));
+            return View();
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
+            // ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
             return View(new Product());
         }
 
         [HttpPost]
         public IActionResult Create(Product p)
         {
-            if (ModelState.IsValid)
-            {
-                ProductRepository.AddProduct(p);
-                return RedirectToAction("list");
-            }
-            ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
+            // if (ModelState.IsValid)
+            // {
+            //     ProductRepository.AddProduct(p);
+            //     return RedirectToAction("list");
+            // }
+            // ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
 
-            return View(p);
+            return View();
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
-            return View(ProductRepository.GetProductById(id));
+            //ViewBag.Categories = new SelectList(CategoryRepository.Categories, "CategoryId", "Name");
+            return View();
         }
 
         [HttpPost]
         public IActionResult Edit(Product p)
         {
-            ProductRepository.EditProduct(p);
+            // ProductRepository.EditProduct(p);
             return RedirectToAction("list");
         }
 
         [HttpPost]
         public IActionResult Delete(int ProductId)
         {
-            ProductRepository.DeleteProduct(ProductId);
+            // ProductRepository.DeleteProduct(ProductId);
             return RedirectToAction("list");
         }
 

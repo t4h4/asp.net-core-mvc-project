@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using app.webui.Models;
-
+using app.entity;
 
 public class ProductViewModel
 {

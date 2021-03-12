@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using app.data.Abstract;
+using app.data.Concrete.EfCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +21,8 @@ namespace app.webui
         public void ConfigureServices(IServiceCollection services)
         {
             //mvc
+            // IProductRepository çağırırsam efcore olanı gelsin. mysql falanda yapabilirim. dependency injection
+            services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddControllersWithViews(); // controller kullanacağımızı belirttik.
         }
 
@@ -30,8 +34,8 @@ namespace app.webui
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(),"node_modules")), // node_modules açılıyor.
-                    RequestPath="/modules"        // dışarıdan bu şekilde çağıracağız.        
+                    Path.Combine(Directory.GetCurrentDirectory(), "node_modules")), // node_modules açılıyor.
+                RequestPath = "/modules"        // dışarıdan bu şekilde çağıracağız.        
             });
 
             if (env.IsDevelopment())
