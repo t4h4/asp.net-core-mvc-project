@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using app.data.Abstract;
 using app.entity;
 
-namespace app.data.Concrete.SQL
+namespace app.data.Concrete.EfCore
 {
-    public class SQLCategoryRepository : ICategoryRepository
+    public class EfCoreCategoryRepository : ICategoryRepository
     {
+        private ShopContext db = new ShopContext();
         public void Create(Category entity)
         {
-            throw new System.NotImplementedException();
+            db.Categories.Add(entity);
+            db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -22,6 +24,11 @@ namespace app.data.Concrete.SQL
         }
 
         public Category GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Category> GetPopularCategories()
         {
             throw new System.NotImplementedException();
         }
