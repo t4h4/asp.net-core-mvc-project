@@ -43,6 +43,7 @@ namespace app.webui
 
             if (env.IsDevelopment())
             {
+                SeedDatabase.Seed(); //uygulama geliştirme aşamasında test verilerini yolla.
                 app.UseDeveloperExceptionPage();
             }
 
