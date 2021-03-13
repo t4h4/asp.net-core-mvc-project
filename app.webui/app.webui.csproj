@@ -3,6 +3,8 @@
   <ItemGroup>
     <!-- referansların doğru olabilmesi için aşağıdaki gerekli. -->
     <ProjectReference Include="..\app.data\app.data.csproj" />
+    <ProjectReference Include="..\app.entity\app.entity.csproj" />
+    <ProjectReference Include="..\app.business\app.business.csproj" />
   </ItemGroup>
 
   <ItemGroup>

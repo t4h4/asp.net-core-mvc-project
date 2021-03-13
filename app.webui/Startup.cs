@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using app.business.Abstract;
+using app.business.Concrete;
 using app.data.Abstract;
 using app.data.Concrete.EfCore;
 using Microsoft.AspNetCore.Builder;
@@ -23,6 +25,7 @@ namespace app.webui
             //mvc
             // IProductRepository çağırırsam efcore olanı gelsin. mysql falanda yapabilirim. dependency injection
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
+            services.AddScoped<IProductService,ProductManager>(); 
             services.AddControllersWithViews(); // controller kullanacağımızı belirttik.
         }
 

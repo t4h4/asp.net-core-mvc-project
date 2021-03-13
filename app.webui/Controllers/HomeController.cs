@@ -2,22 +2,23 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using app.data.Abstract;
+using app.business.Abstract;
 
 namespace app.webui.Controllers
 {
     // localhost:5000/home
     public class HomeController : Controller
     {
-        private IProductRepository _productRepository;
-        public HomeController(IProductRepository productRepository)
+        private IProductService _productService;
+        public HomeController(IProductService productService)
         {
-            this._productRepository = productRepository;
+            this._productService = productService;
         }
         public IActionResult Index()
         {
             var productViewModel = new ProductViewModel()
             {
-                Products = _productRepository.GetAll()
+                Products = _productService.GetAll()
             };
 
             return View(productViewModel);
