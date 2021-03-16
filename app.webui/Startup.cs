@@ -24,6 +24,9 @@ namespace app.webui
         {
             //mvc
             // IProductRepository çağırırsam efcore olanı gelsin. mysql falanda yapabilirim. dependency injection
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
+            
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
             services.AddScoped<IProductService,ProductManager>(); 
             services.AddControllersWithViews(); // controller kullanacağımızı belirttik.
