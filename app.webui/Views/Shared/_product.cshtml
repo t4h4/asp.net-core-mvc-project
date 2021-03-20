@@ -9,6 +9,7 @@
         </small>
     </div>
     <div class="card-footer text-center">
+        @* //shop controller altındaki details action metoduna gidiyor. Giderken productid bilgisini gönderiyor. *@
         <a asp-controller="shop" asp-action="Details" asp-route-id="@Model.ProductId"
             class="btn btn-primary btn-sm">Details</a>
         <a asp-controller="shop" asp-action="addtocart" asp-route-id="@Model.ProductId"

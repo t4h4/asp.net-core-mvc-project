@@ -1,4 +1,5 @@
 using app.business.Abstract;
+using app.entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.webui.Controllers
@@ -20,6 +21,21 @@ namespace app.webui.Controllers
             };
 
             return View(productViewModel);
+        }
+
+        public IActionResult Details(int? id) //her zaman id gelmesi beklenmez.
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Product product = _productService.GetById((int)id); // nullable değil. cast etmemiz gerek. 
+
+            if (product == null) //gönderilen ürün bulunamadıysa
+            {
+                return NotFound();
+            }
+            return View(product); //bulunduysa bulunan product bilgisini sayfaya model olarak gönderelim.
         }
     }
 }
