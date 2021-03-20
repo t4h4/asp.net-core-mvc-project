@@ -1,5 +1,7 @@
+using System.Linq;
 using app.business.Abstract;
 using app.entity;
+using app.webui.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.webui.Controllers
@@ -29,13 +31,18 @@ namespace app.webui.Controllers
             {
                 return NotFound();
             }
-            Product product = _productService.GetById((int)id); // nullable değil. cast etmemiz gerek. 
+            Product product = _productService.GetProductDetails((int)id); // nullable değil. cast etmemiz gerek. 
 
             if (product == null) //gönderilen ürün bulunamadıysa
             {
                 return NotFound();
             }
-            return View(product); //bulunduysa bulunan product bilgisini sayfaya model olarak gönderelim.
+
+            //aşağıda veritabanı sorgulamayoruz, gelen değerleri gönderiyoruz.
+            return View(new ProductDetailModel{
+                Product = product,
+                Categories = product.ProductCategories.Select(i=>i.Category).ToList()
+            });
         }
     }
 }

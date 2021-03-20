@@ -20,6 +20,7 @@ namespace app.data.Concrete.EfCore
                 if (context.Products.Count() == 0)
                 {
                     context.Products.AddRange(Products);
+                    context.AddRange(ProductCategories);
                 }
             }
             context.SaveChanges();
@@ -37,6 +38,17 @@ namespace app.data.Concrete.EfCore
             new Product(){Name="Samsung S7",Price=4000,ImageUrl="3.jpg",Description="iyi telefon", IsApproved=true},
             new Product(){Name="Samsung S8",Price=5000,ImageUrl="4.jpg",Description="iyi telefon", IsApproved=false},
             new Product(){Name="Samsung S9",Price=6000,ImageUrl="5.jpg",Description="iyi telefon", IsApproved=true},
+        };
+
+        private static ProductCategory[] ProductCategories ={
+            new ProductCategory(){Product=Products[0],Category=Categories[0]},
+            new ProductCategory(){Product=Products[0],Category=Categories[2]},
+            new ProductCategory(){Product=Products[1],Category=Categories[0]},
+            new ProductCategory(){Product=Products[1],Category=Categories[2]},
+            new ProductCategory(){Product=Products[2],Category=Categories[0]},
+            new ProductCategory(){Product=Products[2],Category=Categories[2]},
+            new ProductCategory(){Product=Products[3],Category=Categories[0]},
+            new ProductCategory(){Product=Products[3],Category=Categories[2]},
         };
     }
 }
