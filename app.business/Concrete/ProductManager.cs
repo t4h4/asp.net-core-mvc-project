@@ -8,7 +8,7 @@ namespace app.business.Concrete
 {
     public class ProductManager : IProductService
     {
-      private IProductRepository _productRepository;
+        private IProductRepository _productRepository;
         public ProductManager(IProductRepository productRepository)
         {
             _productRepository = productRepository;
@@ -26,7 +26,7 @@ namespace app.business.Concrete
         }
 
         public List<Product> GetAll()
-        {            
+        {
             return _productRepository.GetAll();
         }
 
@@ -38,6 +38,11 @@ namespace app.business.Concrete
         public Product GetProductDetails(int id)
         {
             return _productRepository.GetProductDetails(id);
+        }
+
+        public List<Product> GetProductsByCategory(string name)
+        {
+            return _productRepository.GetProductsByCategory(name);
         }
 
         public void Update(Product entity)

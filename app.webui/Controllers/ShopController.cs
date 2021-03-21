@@ -15,11 +15,11 @@ namespace app.webui.Controllers
             this._productService = productService;
         }
 
-        public IActionResult List()
+        public IActionResult List(string category) //string zaten varsayılan olarak nullable
         {
             var productViewModel = new ProductListViewModel()
             {
-                Products = _productService.GetAll()
+                Products = _productService.GetProductsByCategory(category)
             };
 
             return View(productViewModel);
@@ -39,9 +39,10 @@ namespace app.webui.Controllers
             }
 
             //aşağıda veritabanı sorgulamayoruz, gelen değerleri gönderiyoruz.
-            return View(new ProductDetailModel{
+            return View(new ProductDetailModel
+            {
                 Product = product,
-                Categories = product.ProductCategories.Select(i=>i.Category).ToList()
+                Categories = product.ProductCategories.Select(i => i.Category).ToList()
             });
         }
     }

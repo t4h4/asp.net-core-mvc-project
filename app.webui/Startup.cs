@@ -26,9 +26,9 @@ namespace app.webui
             // IProductRepository çağırırsam efcore olanı gelsin. mysql falanda yapabilirim. dependency injection
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
-            
+
             services.AddScoped<IProductRepository, EfCoreProductRepository>();
-            services.AddScoped<IProductService,ProductManager>(); 
+            services.AddScoped<IProductService, ProductManager>();
             services.AddControllersWithViews(); // controller kullanacağımızı belirttik.
         }
 
@@ -58,6 +58,12 @@ namespace app.webui
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                  name: "products", //sadece isim. önemli değil. pattern önemli
+                  pattern: "products/{category?}",
+                  defaults: new { controller = "Shop", action = "list" }
+              );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"  // id olmayabilir ? // varsayılan olarak Home/Index'e gidiyor.
