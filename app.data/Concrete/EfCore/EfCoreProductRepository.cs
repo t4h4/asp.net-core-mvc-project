@@ -42,7 +42,7 @@ namespace app.data.Concrete.EfCore
                                     //ilk başta joinleri oluşturacağız. ilgili kayıtları getireceğiz. sonra where koşulu.
                                     //where ile ilk başta her aldığımız product kayıtlarının, product categories'lerine geçiş yapalım,
                                     // ve product categoryies üzerinde herhangi bi' kayıt var mı yok mu diye any ile kontrol edelim. any true gönderirse herhangi bi'ürün vardır o kategoride. 
-                                    .Where(i => i.ProductCategories.Any(a => a.Category.Name.ToLower() == name.ToLower()));
+                                    .Where(i => i.ProductCategories.Any(a => a.Category.Url == name));
                 }
 
                 return products.ToList();
